@@ -29,7 +29,7 @@ def aksi_login():
         session["user"] = username
         return redirect(url_for('admin'))
     else:
-        return f"salah !!!"
+        return render_template("salah.html")
 
 @app.route('/logout')
 def logout():

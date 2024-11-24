@@ -12,6 +12,10 @@ mydb = mysql.connector.connect(
     password="")
 
 @app.route('/')
+@app.route('/perpustakaan')
+def perpus():
+    return render_template('perpustakaan.html')
+
 @app.route('/home')
 def home():
     return render_template('home.html')
@@ -43,16 +47,20 @@ def admin():
     else:
         return redirect(url_for("home"))
 
-@app.route('/simpan', methods = ["POST", "GET"] )
+@app.route('/simpan', methods=["POST", "GET"])
 def simpan():
     if session.get("user"):
         cursor = mydb.cursor()
         nama = request.form["nama"]
         kelas = request.form["kelas"]
         alamat = request.form["alamat"]
-        query = ("insert into siswa values( %s, %s, %s, %s)")
-        data = ( "", nama, kelas, alamat )
-        cursor.execute( query, data )
+        tanggal_peminjaman = request.form["tanggal_peminjaman"]
+        tanggal_pengembalian = request.form["tanggal_pengembalian"]
+
+        query = ("insert into siswa values(%s, %s, %s, %s, %s, %s)")
+        data = ("", nama, kelas, alamat, tanggal_peminjaman, tanggal_pengembalian )
+
+        cursor.execute(query, data)
         mydb.commit()
         cursor.close()
         return redirect("/tampil")
@@ -91,12 +99,12 @@ def update(id):
         data = (id,)
         cursor.execute( query, data )
         value = cursor.fetchone()
-        return render_template('update.html',value=value) 
+        return render_template('update.html', value=value)
     else:
         return redirect(url_for("home"))
     
 
-@app.route('/aksiupdate', methods = ["POST", "GET"] )
+@app.route('/aksiupdate', methods=["POST", "GET"])
 def aksiupdate():
     if session.get("user"):
         cursor = mydb.cursor()
@@ -104,15 +112,19 @@ def aksiupdate():
         nama = request.form["nama"]
         kelas = request.form["kelas"]
         alamat = request.form["alamat"]
-        query = ("update siswa set nama = %s, kelas = %s, alamat = %s where id = %s")
-        data = ( nama, kelas, alamat,id, )
-        cursor.execute( query, data )
+        tanggal_peminjaman = request.form["tanggal_peminjaman"]
+        tanggal_pengembalian = request.form["tanggal_pengembalian"]
+
+        query = ("update siswa set nama = %s, kelas = %s, alamat = %s, tanggal_peminjaman = %s, tanggal_pengembalian = %s where id = %s")
+        data = (nama, kelas, alamat, tanggal_peminjaman, tanggal_pengembalian, id, )
+
+        cursor.execute(query, data)
         mydb.commit()
         cursor.close()
         return redirect('/tampil')
     else:
         return redirect(url_for("home"))
-    
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -53,12 +53,12 @@ def simpan():
         cursor = mydb.cursor()
         nama = request.form["nama"]
         kelas = request.form["kelas"]
-        alamat = request.form["alamat"]
+        buku = request.form["buku"]
         tanggal_peminjaman = request.form["tanggal_peminjaman"]
         tanggal_pengembalian = request.form["tanggal_pengembalian"]
 
         query = ("insert into siswa values(%s, %s, %s, %s, %s, %s)")
-        data = ("", nama, kelas, alamat, tanggal_peminjaman, tanggal_pengembalian )
+        data = ("", nama, kelas, buku, tanggal_peminjaman, tanggal_pengembalian )
 
         cursor.execute(query, data)
         mydb.commit()
@@ -111,12 +111,12 @@ def aksiupdate():
         id = request.form["id"]
         nama = request.form["nama"]
         kelas = request.form["kelas"]
-        alamat = request.form["alamat"]
+        buku = request.form["buku"]
         tanggal_peminjaman = request.form["tanggal_peminjaman"]
         tanggal_pengembalian = request.form["tanggal_pengembalian"]
 
-        query = ("update siswa set nama = %s, kelas = %s, alamat = %s, tanggal_peminjaman = %s, tanggal_pengembalian = %s where id = %s")
-        data = (nama, kelas, alamat, tanggal_peminjaman, tanggal_pengembalian, id, )
+        query = ("update siswa set nama = %s, kelas = %s, buku = %s, tanggal_peminjaman = %s, tanggal_pengembalian = %s where id = %s")
+        data = (nama, kelas, buku, tanggal_peminjaman, tanggal_pengembalian, id, )
 
         cursor.execute(query, data)
         mydb.commit()

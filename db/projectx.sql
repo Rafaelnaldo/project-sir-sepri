@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 09:48 AM
+-- Generation Time: Nov 25, 2024 at 09:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `siswa` (
   `id` int(3) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `kelas` varchar(5) NOT NULL,
-  `alamat` text NOT NULL,
+  `buku` text NOT NULL,
   `tanggal_peminjaman` text NOT NULL,
   `tanggal_pengembalian` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,8 +40,9 @@ CREATE TABLE `siswa` (
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama`, `kelas`, `alamat`, `tanggal_peminjaman`, `tanggal_pengembalian`) VALUES
-(1, 'Budi Santoso', '11', 'THE CALM INVESTOR', '02/11/2024', '15/11/2024');
+INSERT INTO `siswa` (`id`, `nama`, `kelas`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`) VALUES
+(1, 'Budi Santoso', '11', 'THE CALM INVESTOR', '02/11/2024', '15/11/2024'),
+(2, 'nana', '10', 'THE RICHEST MAN IN BABYLON', '10/11/2024', '15/11/2024');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
